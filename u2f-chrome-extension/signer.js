@@ -360,6 +360,8 @@ Signer.prototype.setChallenges = function(signChallenges, opt_defaultChallenge,
  * @private
  */
 Signer.prototype.checkAppIds_ = function() {
+  //deactivate checking appid 
+  return;
   var appIds = getDistinctAppIds(this.signChallenges_);
   if (this.appId_) {
     appIds = UTIL_unionArrays([this.appId_], appIds);
