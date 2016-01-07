@@ -123,6 +123,7 @@ function XhrAppIdChecker(fetcher) {
  */
 XhrAppIdChecker.prototype.checkAppIds =
     function(timer, origin, appIds, allowHttp, opt_logMsgUrl) {
+  
   if (this.timer_) {
     // Can't use the same object to check appIds more than once.
     return Promise.resolve(false);

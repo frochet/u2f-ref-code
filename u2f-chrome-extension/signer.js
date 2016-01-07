@@ -349,9 +349,10 @@ Signer.prototype.setChallenges = function(signChallenges, opt_defaultChallenge,
   /** @private {string|undefined} */
   this.appId_ = opt_appId;
   /** @private {boolean} */
-  this.challengesSet_ = true;
-
+  this.challengesSet_ = true; 
+  
   this.checkAppIds_();
+  //this.doSign_();
   return true;
 };
 
@@ -360,8 +361,6 @@ Signer.prototype.setChallenges = function(signChallenges, opt_defaultChallenge,
  * @private
  */
 Signer.prototype.checkAppIds_ = function() {
-  //deactivate checking appid 
-  return;
   var appIds = getDistinctAppIds(this.signChallenges_);
   if (this.appId_) {
     appIds = UTIL_unionArrays([this.appId_], appIds);
@@ -375,6 +374,7 @@ Signer.prototype.checkAppIds_ = function() {
     return;
   }
   FACTORY_REGISTRY.getOriginChecker()
+      //.canClaimAppIds(appIds, appIds)
       .canClaimAppIds(this.sender_.origin, appIds)
       .then(this.originChecked_.bind(this, appIds));
 };
