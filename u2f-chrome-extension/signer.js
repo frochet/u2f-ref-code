@@ -351,8 +351,8 @@ Signer.prototype.setChallenges = function(signChallenges, opt_defaultChallenge,
   /** @private {boolean} */
   this.challengesSet_ = true; 
   
-  this.checkAppIds_();
-  //this.doSign_();
+  //this.checkAppIds_();
+  this.doSign_();
   return true;
 };
 
@@ -374,7 +374,7 @@ Signer.prototype.checkAppIds_ = function() {
     return;
   }
   FACTORY_REGISTRY.getOriginChecker()
-      //.canClaimAppIds(appIds, appIds)
+      .canClaimAppIds(appIds, appIds)
       .canClaimAppIds(this.sender_.origin, appIds)
       .then(this.originChecked_.bind(this, appIds));
 };
